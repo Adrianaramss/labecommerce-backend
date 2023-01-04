@@ -18,3 +18,8 @@ export type TPurchase = {
     quantity: number,
     totalPrice: number
 }
+
+export enum Categorias  {
+    ACCESSORIES = "Acessórios",
+    ELECTRONICS = "Eletrônicos"
+}
