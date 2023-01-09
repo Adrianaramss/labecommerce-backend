@@ -1,7 +1,55 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.purchase = exports.getAllPuchasesFromUserId = exports.createPuschase = exports.queryProductsByName = exports.getProductById = exports.getAllProducts = exports.createProduct = exports.products = exports.getAllUsers = exports.createUser = exports.users = void 0;
+const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
 const type_1 = require("./type");
+const app = (0, express_1.default)();
+app.use(express_1.default.json());
+app.use((0, cors_1.default)());
+app.listen(3003, () => {
+    console.log("Servidor rodando na porta 3003");
+});
+app.get('/ping', (req, res) => {
+    res.send('Pong!');
+});
+app.get('/users', (req, res) => {
+    res.status(200).send(exports.users);
+});
+app.get('/products', (req, res) => {
+    res.status(200).send(exports.products);
+});
+app.get("/products/search", (req, res) => {
+    const q = req.query.q;
+    const buscaNomeProduto = exports.products.filter((product) => {
+        return product.name.toLowerCase().includes(q.toLowerCase());
+    });
+    res.status(200).send(buscaNomeProduto);
+});
+app.post('/users', (req, res) => {
+    const { id, email, password } = req.body;
+    const newUser = {
+        id,
+        email,
+        password
+    };
+    exports.users.push(newUser);
+    res.status(201).send("usuario registrado com sucesso!");
+});
+app.post('/products', (req, res) => {
+    const { id, name, price, category } = req.body;
+    const newProduct = {
+        id,
+        name,
+        price,
+        category
+    };
+    exports.products.push(newProduct);
+    res.status(201).send("usuario registrado com sucesso!");
+});
 exports.users = [{
         id: '1',
         email: 'user1@gmail',
