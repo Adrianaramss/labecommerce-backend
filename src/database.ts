@@ -1,6 +1,109 @@
-
-import { privateDecrypt } from "crypto";
+import  express, { Request, Response} from 'express'
+import cors from 'cors';
 import {TProduct, TUser, TPurchase,Categorias}  from "./type";
+
+
+
+const app = express()
+
+app.use(express.json())
+app.use(cors())
+
+app.listen(3003, () => {
+    console.log("Servidor rodando na porta 3003")
+})
+
+app.get('/ping', (req: Request, res: Response) => {
+    res.send('Pong!')
+})
+
+////lista de usuarios/////////
+
+
+app.get('/users',(req: Request, res:Response) => {
+    res.status(200).send(users)
+    })
+
+//// lista de produtos///////
+
+app.get('/products',(req: Request, res:Response) => {
+    res.status(200).send(products)
+    })
+
+
+
+/// pesquisar por nome do produto     
+
+app.get("/products/search", ( req:Request, res:Response) => {
+    const q = req.query.q as string
+    
+    const buscaNomeProduto =products.filter((product) => {
+        return product.name.toLowerCase().includes(q.toLowerCase())
+    } )
+
+    res.status(200).send(buscaNomeProduto) 
+})
+
+
+
+/// Criar novo usuario 
+
+app.post('/users', (req: Request, res: Response) => {
+
+    const {id, email, password} = req.body as TUser
+
+    const newUser = {
+        id,
+        email,
+        password
+    }
+
+    users.push(newUser)
+
+    res.status(201).send("usuario registrado com sucesso!")
+})
+
+
+/// Criar novo produto
+
+app.post('/products', (req: Request, res: Response) => {
+
+    const {id, name, price,category} = req.body as TProduct
+
+    const newProduct = {
+        id,
+        name,
+        price,
+        category
+    }
+
+    products.push(newProduct)
+
+    res.status(201).send("produto registrado com sucesso!")
+})
+
+
+
+/// Criar novo compra
+
+app.post('/purchase', (req: Request, res: Response) => {
+
+    const {userId, productId, quantity,totalPrice} = req.body as TPurchase
+
+    const newPurchase = {
+        userId,
+        productId,
+        quantity,
+        totalPrice
+    }
+
+    purchase.push(newPurchase)
+
+    res.status(201).send("nova compra registrado com sucesso!")
+})
+
+
+
 
 export const users: TUser[] = [{
     id: '1',
