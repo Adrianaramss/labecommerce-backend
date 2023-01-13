@@ -22,6 +22,157 @@ app.get('/ping', (req: Request, res: Response) => {
     res.send('Pong!')
 })
 
+////Get All Users refatorar
+
+app.get('/users',(req: Request, res:Response) => {
+    try {
+        res.status(200).send(users)
+
+    } catch (error:any) {
+      console.log(error)
+        
+    if (res.statusCode === 200){
+         res.status(500)
+    }
+    res.send(error.message)
+}
+    })
+
+////Get All Products refatorar
+
+app.get('/products',(req: Request, res:Response) => {
+
+    try {
+        res.status(200).send(products)
+
+    } catch (error:any) {
+      console.log(error)
+        
+    if (res.statusCode === 200){
+         res.status(500)
+    }
+    res.send(error.message)
+    }
+
+ })
+
+////Search Product by name
+
+app.get("/products/search", ( req:Request, res:Response) => {
+
+
+    try {
+
+        const q = req.query.q as string
+        const buscaNomeProduto =products.filter((product) => {
+            return product.name.toLowerCase().includes(q.toLowerCase())
+        })
+        
+        if (q.length < 1) {
+            res.status(400)
+            throw new Error("query deve possuir pelo menos um caractere ")
+        }
+
+        if (buscaNomeProduto.length < 1) {
+            res.status(404)
+            throw new Error("produto não encontrado ")
+        }
+        
+        res.status(200).send(buscaNomeProduto)
+
+    } catch (error: any) {
+        console.log(error)
+
+        if (res.statusCode === 200) {
+            res.status(500)
+        }
+        res.send(error.message)
+    }
+
+
+})
+
+
+/// create User 
+app.post('/users', (req: Request, res: Response) => {
+
+    try{
+
+    const {id, email, password} = req.body 
+
+    const newUser = {
+        id,
+        email,
+        password
+    }
+
+    
+    if(typeof id !== "string") {
+        res.status(400)
+        throw new Error ("verifique o id deve ser uma string")
+    }
+
+    if(id.length  <= 0) {
+        res.status(400)
+        throw new Error (" id deve ter um valor")
+    }
+    if (! email.includes("@")) {
+        throw new Error("Parâmetro 'email' inválido")
+    }
+    if(typeof password !== "string") {
+        res.status(400)
+        throw new Error ("verifique o password deve ser uma string ")
+    }
+
+////// verificar se o email ou id já existe ou não 
+    const searchId = users.filter((user) => {
+        return user.id === newUser.id
+    })
+
+    if (searchId.length >= 1) {
+        res.status(400)
+        throw new Error("Id já esta cadastrado.")
+    }
+
+    const searchEmail = users.filter((user) => {
+        return user.email === newUser.email
+    })
+
+ 
+    if (searchEmail.length >= 1) {
+        res.status(400)
+        throw new Error("esse Email já  esta cadastrado.")
+    }
+
+
+    users.push(newUser)
+
+    res.status(201).send("usuario registrado com sucesso!")
+ 
+    } catch (error: any) {
+        console.log(error)
+
+        if (res.statusCode === 200) {
+            res.status(500)
+        }
+        res.send(error.message)
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ////procurar produto pelo id///////
 app.get("/products/:id", (req:Request,res: Response) => {
 const id = req.params.id
@@ -130,29 +281,29 @@ app.put("/product/:id", (req: Request, res: Response) => {
 ////lista de usuarios/////////
 
 
-app.get('/users',(req: Request, res:Response) => {
-    res.status(200).send(users)
-    })
+// app.get('/users',(req: Request, res:Response) => {
+//     res.status(200).send(users)
+//     })
 
 //// lista de produtos///////
 
-app.get('/products',(req: Request, res:Response) => {
-    res.status(200).send(products)
-    })
+// app.get('/products',(req: Request, res:Response) => {
+//     res.status(200).send(products)
+//     })
 
    
 
 /// pesquisar por nome do produto     
 
-app.get("/products/search", ( req:Request, res:Response) => {
-    const q = req.query.q as string
+// app.get("/products/search", ( req:Request, res:Response) => {
+//     const q = req.query.q as string
     
-    const buscaNomeProduto =products.filter((product) => {
-        return product.name.toLowerCase().includes(q.toLowerCase())
-    } )
+//     const buscaNomeProduto =products.filter((product) => {
+//         return product.name.toLowerCase().includes(q.toLowerCase())
+//     } )
 
-    res.status(200).send(buscaNomeProduto) 
-})
+//     res.status(200).send(buscaNomeProduto) 
+// })
 
 
 
