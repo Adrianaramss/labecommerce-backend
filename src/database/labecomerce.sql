@@ -140,4 +140,44 @@ ORDER BY price ASC;
 -- retorna os produtos com preços dentro do intervalo mockado em ordem crescente
 SELECT *FROM products
 WHERE "price" >= '100' AND price <= '3000'
-ORDER BY price ASC
+ORDER BY price ASC;
+
+
+
+------Criação da tabela de pedidos---------------Relações em SQL I
+
+CREATE TABLE purchases (
+    id TEXT PRIMARY KEY UNIQUE NOT NULL,
+    total_price REAL UNIQUE NOT NULL,
+    paid INTEGER NOT NULL,
+    delivered_at TEXT, 
+    buyer_id TEXT NOT NULL,
+    FOREIGN KEY (buyer_id) REFERENCES users (id)
+
+);
+
+DROP TABLE purchases;
+
+
+
+INSERT INTO purchases (id, total_price, paid, buyer_id)
+VALUES
+    ("P1", 3000, "0", "2"),
+    ("P3", 70,  "0", "2"),
+    ("P4", 590,  "0", "3"),
+    ("P6", 401,  "0", "3");
+
+
+SELECT * FROM purchases;
+
+
+UPDATE purchases
+SET delivered_at = DATETIME ("NOW")
+WHERE ID = "P1";
+
+
+SELECT * FROM purchases
+INNER JOIN users
+ON purchases.buyer_id = users.id
+WHERE users.id = "2"
+     
