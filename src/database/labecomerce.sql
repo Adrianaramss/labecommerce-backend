@@ -162,10 +162,10 @@ DROP TABLE purchases;
 
 INSERT INTO purchases (id, total_price, paid, buyer_id)
 VALUES
-    ("P1", 3000, "0", "2"),
-    ("P3", 70,  "0", "2"),
-    ("P4", 590,  "0", "3"),
-    ("P6", 401,  "0", "3");
+    ("C1", 3000, "0", "2"),
+    ("C3", 70,  "0", "2"),
+    ("C4", 590,  "0", "3"),
+    ("C6", 401,  "0", "3");
 
 
 SELECT * FROM purchases;
@@ -173,11 +173,43 @@ SELECT * FROM purchases;
 
 UPDATE purchases
 SET delivered_at = DATETIME ("NOW")
-WHERE ID = "P1";
+WHERE ID = "C1";
 
 
 SELECT * FROM purchases
 INNER JOIN users
 ON purchases.buyer_id = users.id
-WHERE users.id = "2"
-     
+WHERE users.id = "2";
+
+
+---Criação da tabela de relações purchases_products
+
+CREATE TABLE purchases_products (
+ purchase_id TEXT NOT NULL,
+ product_id TEXT NOT NULL,
+ quantity INTEGER NOT NULL,
+ FOREIGN KEY (purchase_id) REFERENCES purchases(id),
+ FOREIGN KEY (product_id) REFERENCES products(id)
+
+);
+
+DROP TABLE purchases_products;
+
+INSERT INTO purchases_products (purchase_id, product_id, quantity)
+VALUES
+   ("C3", "P3", 1),
+   ("C4", "P4", 2),
+   ("C6", "P6", 1);
+
+
+  SELECT * FROM purchases_products;
+
+SELECT purchases.id AS purchasesId,
+products.id AS productsId,
+products.name,
+purchases_products.quantity
+FROM purchases_products
+INNER JOIN purchases 
+ON purchases_products.purchase_id = purchasesId
+INNER JOIN products
+ON purchases_products.product_id = productsId;
