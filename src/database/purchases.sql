@@ -11,6 +11,7 @@ CREATE TABLE purchases (
     buyer_id TEXT NOT NULL,
     FOREIGN KEY (buyer_id) REFERENCES users (id)
 
+
 );
 
 DROP TABLE purchases;

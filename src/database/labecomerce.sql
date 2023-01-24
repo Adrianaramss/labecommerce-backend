@@ -3,19 +3,21 @@
 
 CREATE TABLE users (
     id TEXT PRIMARY KEY UNIQUE NOT NULL,
+    name TEXT NOT NULL,
     email TEXT UNIQUE NOT NULL,
-    password TEXT NOT NULL
+    password TEXT NOT NULL,
+    create_at TEXT DEFAULT (DATETIME()) NOT NULL
 );
-
+ DROP TABLE users;
 PRAGMA table_info ('users');
 
 SELECT *FROM users;
 
-INSERT INTO users (id,email,password)
+INSERT INTO users (id, name,email,password)
 VALUES
-('1', 'polianacost@gmail.com','845958'),
-('2', 'mariac@gmail.com','955542'),
-('3', 'robertolima1@gmail.com','121524');
+('1', 'poliana','polianacost@gmail.com','845958'),
+('2','maria', 'mariac@gmail.com','955542'),
+('3', 'roberto','robertolima1@gmail.com','121524');
 
 
 
@@ -23,21 +25,25 @@ CREATE TABLE products (
     id TEXT PRIMARY KEY UNIQUE NOT NULL,
     name TEXT NOT NULL,
     price REAL NOT NULL,
-    category TEXT NOT NULL
-);
+    description TEXT NOT NULL,
+    imageUrl TEXT NOT NULL
 
+    
+
+);
+DROP TABLE products;
 
 PRAGMA table_info ('products');
 
 SELECT *FROM products;
 
-INSERT INTO products (id,name,price,category)
+INSERT INTO products (id,name,price,description, "imageUrl")
 VALUES
-('P1', 'notebook','3000','eletrônicos'),
-('P2', 'headset gamer','106','acessorios'),
-('P3', 'teclado gammer','70','acessorios'),
-('P4', 'monitor 21.6 ','590','eletrônicos'),
-('P5', 'mouse gamer','45','acessorios');
+('P1', 'notebook','3000','eletrônicos', 'http://...'),
+('P2', 'headset gamer','106','acessorios', 'http://...'),
+('P3', 'teclado gammer','70','acessorios', 'http://...'),
+('P4', 'monitor 21.6 ','590','eletrônicos','http://...'),
+('P5', 'mouse gamer','45','acessorios', 'http://...');
 
 -------aprofundamento sql ------------------------------------------------------
 
@@ -152,7 +158,9 @@ CREATE TABLE purchases (
     paid INTEGER NOT NULL,
     delivered_at TEXT, 
     buyer_id TEXT NOT NULL,
-    FOREIGN KEY (buyer_id) REFERENCES users (id)
+    FOREIGN KEY (buyer_id) REFERENCES users (id),
+    create_at TEXT DEFAULT (DATETIME()) NOT NULL
+
 
 );
 
