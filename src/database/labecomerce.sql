@@ -37,13 +37,13 @@ PRAGMA table_info ('products');
 
 SELECT *FROM products;
 
-INSERT INTO products (id,name,price,description, "imageUrl")
+INSERT INTO products (id,name,price,description, imageUrl)
 VALUES
-('P1', 'notebook','3000','eletrônicos', 'http://...'),
-('P2', 'headset gamer','106','acessorios', 'http://...'),
-('P3', 'teclado gammer','70','acessorios', 'http://...'),
-('P4', 'monitor 21.6 ','590','eletrônicos','http://...'),
-('P5', 'mouse gamer','45','acessorios', 'http://...');
+('P1', 'notebook','3000','eletrônicos', 'https://fastly.picsum.photos/id/1/200/300.jpg?hmac=jH5bDkLr6Tgy3oAg5khKCHeunZMHq0ehBZr6vGifPLY'),
+('P2', 'headset gamer','106','acessorios', 'https://imgs.casasbahia.com.br/1531288905/1xg.jpg?imwidth=500'),
+('P3', 'teclado gammer','70','acessorios', 'https://m.media-amazon.com/images/I/718-DlUkzWL._AC_SY450_.jpg'),
+('P4', 'monitor 21.6 ','590','eletrônicos','https://nissei.com/media/catalog/product/cache/16a9529cefd63504739dab4fc3414065/l/e/len-66d2kcc6us_-_2.jpg'),
+('P5', 'mouse gamer','45','acessorios', 'https://images.tcdn.com.br/img/img_prod/1041964/mouse_gamer_evolut_rayden_eg_104rb_75_1_c6e0cc5b93b83fa980e64a8ba4a4d17b.jpg');
 
 -------aprofundamento sql ------------------------------------------------------
 
