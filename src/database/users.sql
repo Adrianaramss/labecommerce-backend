@@ -4,10 +4,13 @@
 
 CREATE TABLE users (
     id TEXT PRIMARY KEY UNIQUE NOT NULL,
+    name TEXT NOT NULL,
     email TEXT UNIQUE NOT NULL,
-    password TEXT NOT NULL
+    password TEXT NOT NULL,
+    create_at TEXT DEFAULT (DATETIME()) NOT NULL
 );
 -----------------------------------------------------------------------
+ DROP TABLE users;
 
 PRAGMA table_info ('users');
 --Get All Users
@@ -34,11 +37,11 @@ VALUES ('5','humberto@gmail.com','845245');
 
 
 
-INSERT INTO users (id,email,password)
+INSERT INTO users (id, name,email,password)
 VALUES
-('1', 'polianacost@gmail.com','845958'),
-('2', 'mariac@gmail.com','955542'),
-('3', 'robertolima1@gmail.com','121524');
+('1', 'poliana','polianacost@gmail.com','845958'),
+('2','maria', 'mariac@gmail.com','955542'),
+('3', 'roberto','robertolima1@gmail.com','121524');
 
 -----------------------------------------------------------------------
 

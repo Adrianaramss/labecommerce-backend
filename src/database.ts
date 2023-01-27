@@ -1,5 +1,5 @@
 
-import {TProduct, TUser, TPurchase,Categorias}  from "./type";
+import {TProduct, TUser, TPurchase}  from "./type";
 
 
 
@@ -37,24 +37,24 @@ export const products: TProduct[] = [{
     id: '1',
     name: 'Notebook',
     price: 3000,
-    category: Categorias.ELECTRONICS
+    description: "eletrônico"
 },
 {
     id: '2',
     name: 'Headphone Game',
     price: 472,
-    category: Categorias.ACCESSORIES
+    description: "acessorios"
 
 }]
 
 
-export function createProduct (id: string, name: string,  price:number, category: Categorias) : void{
+export function createProduct (id: string, name: string,  price:number, description:string) : void{
     console.log(products)
     const newProduct: TProduct = {
     id: id,
     name: name,
     price: price,
-    category:category
+    description
     }
     products.push(newProduct)
     console.log(products)

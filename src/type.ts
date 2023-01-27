@@ -9,7 +9,7 @@ export type TProduct = {
     id: string,
     name: string,
     price: number,
-    category: string
+    description: string
 }
 
 export type TPurchase = {
@@ -19,7 +19,9 @@ export type TPurchase = {
     totalPrice: number
 }
 
-export enum Categorias  {
-    ACCESSORIES = "Acessórios",
-    ELECTRONICS = "Eletrônicos"
-}
+// export enum Categorias  {
+//     ACCESSORIES = "Acessórios",
+//     ELECTRONICS = "Eletrônicos"
+// }
+
+

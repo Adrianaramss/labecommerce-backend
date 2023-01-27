@@ -5,9 +5,9 @@
 
 CREATE TABLE purchases (
     id TEXT PRIMARY KEY UNIQUE NOT NULL,
-    total_price REAL UNIQUE NOT NULL,
-    paid INTEGER NOT NULL,
-    delivered_at TEXT, 
+    total_price REAL NOT NULL,
+    paid INTEGER DEFAULT(0) NOT NULL ,
+    created_at TEXT DEFAULT (DATETIME()) NOT NULL,
     buyer_id TEXT NOT NULL,
     FOREIGN KEY (buyer_id) REFERENCES users (id)
 
@@ -18,20 +18,20 @@ DROP TABLE purchases;
 
 
 
-INSERT INTO purchases (id, total_price, paid, buyer_id)
+INSERT INTO purchases (id, total_price, buyer_id)
 VALUES
-    ("C1", 3000, "0", "2"),
-    ("C3", 70,  "0", "2"),
-    ("C4", 590,  "0", "3"),
-    ("C6", 401,  "0", "3");
+    ("C1", 3000, "2"),
+    ("C3", 70,   "2"),
+    ("C4", 590,  "3"),
+    ("C6", 401,  "3");
 
 
 SELECT * FROM purchases;
 
 
-UPDATE purchases
-SET delivered_at = DATETIME ("NOW")
-WHERE ID = "C1";
+-- UPDATE purchases
+-- SET created_at = DATETIME ("NOW")
+-- WHERE ID = "C1";
 
 
 SELECT * FROM purchases
