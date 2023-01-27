@@ -282,10 +282,10 @@ app.post('/purchases', async (req: Request, res: Response) => {
         await db("purchases_products").insert(newPurchaseProduct)
        }else{
         res.status(400)
-        throw new Error ("compra não realizada")
+        throw new Error ("pedido não realizad0")
        }
        res.status(201).send({
-        message:"compra realizada",
+        message:"pedido realizado com sucesso",
         purchase: {newPurchase, newPurchaseProduct}
        })
     
