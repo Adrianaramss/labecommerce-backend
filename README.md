@@ -22,15 +22,15 @@
 
 # Endpoints 
 - Get teste
-- Get all users
-- Get all purchases
-- Create user
-- Create product
-- Get all products funcionalidade 1
-- Get all products funcionalidade 2
-- Edit product by id
-- Create purchase
-- Delete purchase by id
+- Get all Users
+- Get all Purchases
+- Create User
+- Create Product
+- Get all Products funcionalidade 1
+- Get Product by name funcionalidade 2
+- Edit Product by id
+- Create Purchase
+- Delete Purchase by id
  
  # Documentação API
  https://documenter.getpostman.com/view/24460801/2s8ZDeUKU7
