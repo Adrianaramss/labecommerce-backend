@@ -1,6 +1,6 @@
 # Projeto Labecommerce
 
-projeto do back-end onde é aplicado toda a base de criação de uma API vinculada a um banco de dados real.
+  Projeto do back-end onde é aplicado toda a base de criação de uma API vinculada a um banco de dados real.
 
 # Contéudo abordados
 - NodeJS
