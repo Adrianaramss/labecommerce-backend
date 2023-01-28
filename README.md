@@ -31,6 +31,7 @@
 - Edit Product by id
 - Create Purchase
 - Delete Purchase by id
+- Get purchase by id
  
  # Documentação API
  https://documenter.getpostman.com/view/24460801/2s8ZDeUKU7
