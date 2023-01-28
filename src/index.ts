@@ -316,7 +316,7 @@ app.put("/product/:id", async (req: Request, res: Response) => {
         const newName = req.body.name
         const newPrice = req.body.price
         const newDescription = req.body.description
-
+        const newImageUrl = req.body.imageUrl 
         const [product] = await db("products").where({ id: id })
 
 
@@ -324,7 +324,8 @@ app.put("/product/:id", async (req: Request, res: Response) => {
             const editeproduct = {
                 name: newName || product.name,
                 price: newPrice || product.price,
-                description: newDescription || product.description
+                description: newDescription || product.description,
+                imageUrl:  newImageUrl ||  product.imageUrl
             }
             await db("products").update(editeproduct).where({ id: id })
             res.status(200).send("Cadastro atualizado com sucesso!")
