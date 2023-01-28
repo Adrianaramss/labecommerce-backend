@@ -34,4 +34,4 @@
 - Get purchase by id
  
  # Documentação API
- https://documenter.getpostman.com/view/24460801/2s8ZDeUKU7
+https://documenter.getpostman.com/view/24460801/2s935hPS4G
